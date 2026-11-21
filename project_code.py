@@ -149,16 +149,10 @@ def make_recommendations(data, department_summary, internet_summary):
           "which has the lowest department average in this sample.")
 
 
-def save_reports(results, grade_distribution, department_summary, at_risk,
-                 attendance_summary, study_summary):
-    """Write generated reports under the project directory."""
+def save_report(results):
+    """Write the processed student records under the project directory."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    grade_distribution.to_csv(OUTPUT_DIR / "grade_distribution.csv", index=False)
-    department_summary.to_csv(OUTPUT_DIR / "department_summary.csv")
-    at_risk.to_csv(OUTPUT_DIR / "at_risk_students.csv", index=False)
-    attendance_summary.to_csv(OUTPUT_DIR / "attendance_summary.csv")
-    study_summary.to_csv(OUTPUT_DIR / "study_hours_summary.csv")
-    results.to_csv(OUTPUT_DIR / "cleaned_student_performance_550.csv", index=False)
+    results.to_csv(OUTPUT_DIR / "student_performance_processed.csv", index=False)
 
 
 def show_top_students(top_ten):
@@ -244,17 +238,7 @@ def main():
             python_mark_statistics(results)
             make_recommendations(results, department_summary, internet_summary)
         elif choice == "5":
-            study_summary = results["Study_Hours_Per_Week"].describe().round(2).to_frame(
-                "Study_Hours_Per_Week"
-            )
-            save_reports(
-                results,
-                grade_distribution,
-                department_summary,
-                at_risk,
-                attendance_summary,
-                study_summary,
-            )
+            save_report(results)
             print(f"Saved CSV reports in {OUTPUT_DIR.relative_to(BASE_DIR)}.")
         elif choice == "6":
             print("Goodbye!")

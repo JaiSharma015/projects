@@ -40,14 +40,9 @@ Press Enter at the file prompt to use the included dataset. The menu provides:
 
 ## Reports
 
-Choose **Save CSV reports** to create files in `data/processed/`:
-
-- `cleaned_student_performance_550.csv`
-- `grade_distribution.csv`
-- `department_summary.csv`
-- `at_risk_students.csv`
-- `attendance_summary.csv`
-- `study_hours_summary.csv`
+Choose **Save CSV reports** to create
+`data/processed/student_performance_processed.csv`. Summary tables are shown in
+the terminal; this is the only file written to `data/processed/`.
 
 ## Limitations
 
